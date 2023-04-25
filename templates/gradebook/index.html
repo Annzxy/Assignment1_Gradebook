@@ -49,24 +49,51 @@
       <th scope="col">First Name</th>
       <th scope="col">Last Name</th>
       <th scope="col">Email</th>
-        <th scope="col">Grade</th>
+        <th scope="col">DOB</th>
     </tr>
   </thead>
   <tbody>
-  {% for students in students %}
+  {% for student in students %}
       <tr>
-      <td>{{ students.student_number }}</td>
-      <td>{{ students.first_name }}</td>
-      <td>{{ students.last_name }}</td>
-      <td>{{ students.email }}</td>
-      <td>{{ students.grade }}</td>
-      <td>Action</td>
+      <td>{{ student.student_number }}</td>
+      <td>{{ student.first_name }}</td>
+      <td>{{ student.last_name }}</td>
+      <td>{{ student.email }}</td>
+      <td>{{ student.dob }}</td>
+
+      <td>
+          <button type="button" class="btn btn-success me-1" href="{% url 'view_student' student.id %}" data-bs-toggle="modal"
+          data-bs-target="#myModal{{ student.id }}">
+              <i class="fa-solid fa-circle-info fa-lg"></i>
+          </button>
+          <div class="modal" id="myModal{{ student.id }}" tabindex="-1" aria-labelledby="myModalLabel1" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+            Student: {{ studnet.first_name }} {{ studnet.last_name }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ul class="modal-body">
+            <li>Grade: <strong>{{ student.first_name }}</strong></li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+      </td>
       </tr>
   {% endfor %}
   </tbody>
 </table>
   </div>
-    </p>
   </div>
 </div>
                 {% else %}
